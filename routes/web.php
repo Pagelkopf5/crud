@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->name('index');
+
+Route::get('/create_contato', function  () {
+    return view('create_contato');
+})->name('create_contato');
+
+Route::get('/create_empresa', function () {
+    return view('create_empresa');
+})->name('create_empresa');
+
+Route::post('/creating_contato', function () {
+    return view('index');
+});
+
+Route::post('/creating_empresa', function () {
+    return view('index');
 });
