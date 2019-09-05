@@ -25,8 +25,8 @@ Route::get('/create_empresa', function () {
 
 Route::post('/creating_contato', function () {
     return view('index');
-});
+})->name('creating_contato');
 
 Route::post('/creating_empresa', function () {
     return view('index');
-});
+})->name('creating_empresa');
