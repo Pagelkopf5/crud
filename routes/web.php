@@ -37,6 +37,11 @@ Route::get('/edit_empresa/{id}', function ($id) {
     return view('edit_empresa', compact('empresa'));
 })->name('edit_empresa');
 
+Route::get('/edit_contato/{id}', function ($id) {
+    $contato = Contato::find($id);
+    return view('edit_contato', compact('contato'));
+})->name('edit_contato');
+
 Route::post('/created_contato', function (Request $request) {
     $contato = New Contato;
     $contato->empresa_id = $request->empresa;
@@ -121,6 +126,29 @@ Route::post('/edit_empresa', function (Request $request) {
     return Redirect::route('index');
 })->name('editing_empresa');
 
+Route::post('/edit_contato', function (Request $request) {
+    $contato = Contato::find($request->contato_id);
+    $contato->nome = $request->nome;
+    
+    for ($i = 0; $i >= count($contato->telefones); $i++){
+        $telefone = Telefone::find($contato->telefones[$i]->id);
+        $telefone->numero = $request->telefones[$i]->numero;
+        $telefone->save();
+    }
+
+
+    if(count($request->telefone) != count($contato->telefones)){
+        for ($i = count($contato->telefones); $i >= count($request->telefone); $i++){
+            $telefone = New Telefone;
+            $telefone->numero = $request->telefones[$i]->numero;
+            $telefone->contato_id = $request->contato_id;
+            $telefone->save();
+        }
+    }
+    
+    return Redirect::route('index');
+})->name('editing_contato');
+
 
 Route::get('/delete_empresa/{id}', function ($id) {
     $empresa = Empresa::find($id);
@@ -146,3 +174,13 @@ Route::get('/delete_empresa/{id}', function ($id) {
     return Redirect::route('index');
 
 })->name('delete_empresa');
+
+Route::get('/delete_contato/{id}', function ($id) {
+    $contato = Contato::find($id);
+    foreach($contato->telefones as $telefone){
+        $telefone->delete();
+    }
+    $contato->delete();
+    return Redirect::route('index');
+
+})->name('delete_contato');

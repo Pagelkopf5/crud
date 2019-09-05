@@ -60,3 +60,21 @@ a{
   text-transform: uppercase;
   font-weight: bold;
 }
+
+.container-contato {
+  border: solid #ccc;
+  border-width: 0 1px 1px 1px;
+}
+.container-contato h4{
+  margin: 0;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.wrap-contatos{
+  font-size: 14px;
+  padding: 5px 10px;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+}
