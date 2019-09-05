@@ -76,6 +76,23 @@ Route::post('/created_empresa', function (Request $request) {
 
 
 Route::get('/delete_empresa/{id}', function ($id) {
-    $empresa = Empresa::find($id)->delete();
+    $empresa = Empresa::find($id);
+
+    if($empresa->contatos != null){
+        foreach($empresa->contatos as $contato){
+            $contato->delete();
+        }
+    }
+
+    if($empresa->pessoa_fisica != null){
+        $empresa->pessoa_fisica->delete();
+    }
+
+    if($empresa->pessoa_juridica != null){
+        $empresa->pessoa_juridica->delete();
+    }
+
+    $empresa->delete();
     return Redirect::route('index');
+    
 })->name('delete_empresa');

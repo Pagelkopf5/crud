@@ -19,19 +19,11 @@ class Empresa extends Model
     }
     
     public function pessoa_fisica(){
-        if($this->tipo_empresa == "fisica"){
-            return $this->hasOne('App\PessoaFisica', 'id', 'pessoa_id');
-        } else{
-            return null;
-        }
+        return $this->hasOne('App\PessoaFisica', 'id', 'pessoa_id');
     }
 
     public function pessoa_juridica(){
-        if($this->tipo_empresa == "juridica"){
-            return $this->hasOne('App\PessoaJuridica', 'id', 'pessoa_id');
-        } else{
-            return null;
-        }
+        return $this->hasOne('App\PessoaJuridica', 'id', 'pessoa_id');
     }
 
     public function contatos()
