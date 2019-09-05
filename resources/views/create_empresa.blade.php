@@ -21,11 +21,11 @@
             <label for="municipio">Município</label>
             <input type="text" name="municipio">
         </div>
+        <div class="wrap-input">
+            <label for="cpf">CPF/CNPJ</label>
+            <input type="text" name="cpf_cnpj">
+        </div>
         <div class="wrap-pf no-display">
-            <div class="wrap-input">
-                <label for="cpf">CPF</label>
-                <input type="text" name="cpf">
-            </div>
             <div class="wrap-input">
                 <label for="rg">RG</label>
                 <input type="text" name="rg">
@@ -37,29 +37,35 @@
         </div>
         <div class="wrap-pj no-display">
             <div class="wrap-input">
-                <label for="cnpj">CNPJ</label>
-                <input type="text" name="cnpj">
-            </div>
-            <div class="wrap-input">
                 <label for="nome_fantasia">Nome Fantasia</label>
                 <input type="text" name="nome_fantasia">
             </div>
         </div>
         <div class="wrap-buttons">
-            <a href="{{route("index")}}"><button>Voltar</button></a>
-            <button>Confirmar</button>
+            <a href="{{route("index")}}"><button type="button">Voltar</button></a>
+            <button type="submit">Confirmar</button>
         </div>
     </form>
     <script>
         $("#tipo_empresa").change(function(){
             let valor = $(this).val();
             if(valor == "fisica"){
-                $(".wrap-pf").removeClass("no-display");
-                $(".wrap-pj").addClass("no-display");
+                enableDiv("wrap-pf")
+                disableDiv("wrap-pj")
             }else if(valor == "juridica"){
-                $(".wrap-pj").removeClass("no-display");
-                $(".wrap-pf").addClass("no-display");
+                enableDiv("wrap-pj")
+                disableDiv("wrap-pf")
             }
         })
+        function enableDiv(classe){
+            $(`.${classe}`).removeClass("no-display");
+            $(`.${classe} :input`).attr("disabled", false);
+        }
+
+        function disableDiv(classe){
+            $(`.${classe}`).addClass("no-display");
+            $(`.${classe} :input`).attr("disabled", true);
+        }
+
     </script>
 @endsection

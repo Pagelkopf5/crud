@@ -11,7 +11,7 @@ body{
 .content{
   margin: 50px auto;
   padding: 10px;
-  width: 600px;
+  width: 800px;
   text-align: left;
   background: #fff;
   border-radius: 10px;
@@ -29,4 +29,34 @@ a{
 
 .no-display{
   display: none;
+}
+
+.wrap-itens{
+  margin-bottom: 10px;
+}
+.item {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  border: solid 1px #ababab;
+}
+.titles{
+  font-weight: bold;
+}
+.subitem {
+  padding: 5px;
+  text-align: center;
+}
+.wrap-itens h3{
+  text-align: center;
+  margin: 0 auto 10px;
+}
+.wrap-buttons{
+  text-align: center;
+}
+
+.wrap-buttons a{
+  margin: 0 20px;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
