@@ -15,7 +15,6 @@ class MakePessoaFisica extends Migration
     {
         Schema::create('pessoa_fisica', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cpf');
             $table->string('rg');
             $table->string('data_nascimento');
             $table->integer('empresa_id');

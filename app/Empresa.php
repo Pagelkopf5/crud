@@ -6,8 +6,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    protected $fillable = ['nome','municipio', 'tipo_empresa', 'pessoa_id'];
+    protected $fillable = ['cpf_cnpj', 'nome','municipio', 'tipo_empresa', 'pessoa_id'];
     protected $guarded = ['id'];
     protected $table = 'empresa';
-    public $timestamps = false;
+
+    public function Lastid(){
+        $item = $this->latest()->first();
+        if($item == null){
+            return 1;
+        }
+        return ($item->id + 1);
+    }
+    
+    public function pessoa_fisica(){
+        if($this->tipo_empresa == "fisica"){
+            return $this->hasOne('App\PessoaFisica', 'id', 'pessoa_id');
+        } else{
+            return null;
+        }
+    }
+
+    public function pessoa_juridica(){
+        if($this->tipo_empresa == "juridica"){
+            return $this->hasOne('App\PessoaJuridica', 'id', 'pessoa_id');
+        } else{
+            return null;
+        }
+    }
+
+    public function contatos()
+    {
+        return $this->hasMany('App\Contato', 'empresa_id', 'id');
+    }
 }

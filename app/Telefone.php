@@ -11,8 +11,7 @@ class Telefone extends Model
     protected $table = 'telefone';
     public $timestamps = false;
 
-    public function contato()
-    {
-        return $this->belongsTo('App\Contato');
+    public function contato(){
+        return $this->belongsTo('App\Contato', 'id', 'contato_id');
     }
 }

@@ -15,10 +15,12 @@ class MakeEmpresa extends Migration
     {
         Schema::create('empresa', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('cpf_cnpj');
             $table->string('nome');
             $table->string('municipio');
             $table->string('tipo_empresa');
             $table->integer('pessoa_id');
+            $table->timestamps();
         });
     }
 

@@ -15,7 +15,6 @@ class MakePessoaJuridica extends Migration
     {
         Schema::create('pessoa_juridica', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cnpj');
             $table->string('nome_fantasia');
             $table->integer('empresa_id');
         });
