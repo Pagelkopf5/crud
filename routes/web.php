@@ -80,6 +80,9 @@ Route::get('/delete_empresa/{id}', function ($id) {
 
     if($empresa->contatos != null){
         foreach($empresa->contatos as $contato){
+            foreach($contato->telefones as $telefone){
+                $telefone->delete();
+            }
             $contato->delete();
         }
     }
@@ -94,5 +97,5 @@ Route::get('/delete_empresa/{id}', function ($id) {
 
     $empresa->delete();
     return Redirect::route('index');
-    
+
 })->name('delete_empresa');
